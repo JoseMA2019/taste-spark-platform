@@ -77,11 +77,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Burger Forge — Hamburguesas artesanales en Ventanilla" },
-      { name: "description", content: "Hamburguesas premium a la parrilla, ingredientes frescos y delivery caliente en todo Ventanilla. Ordena en minutos." },
-      { property: "og:title", content: "Burger Forge — Hamburguesas artesanales" },
-      { property: "og:description", content: "Carne angus, pan brioche recién horneado y sabor de fuego real. Delivery en todo Ventanilla." },
+      { name: "theme-color", content: "#0b0b0d" },
+      { property: "og:site_name", content: "Burger Forge" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "es_PE" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -90,6 +89,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Burger Forge",
+          url: "https://taste-spark-platform.lovable.app",
+          logo: "https://taste-spark-platform.lovable.app/favicon.ico",
+          sameAs: [
+            "https://www.instagram.com/burgerforge",
+            "https://www.facebook.com/burgerforge",
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
