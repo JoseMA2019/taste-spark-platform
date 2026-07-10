@@ -200,7 +200,7 @@ function Home() {
               style={{ background: "var(--gradient-ember)" }}
             />
             <div className="relative overflow-hidden rounded-[2rem] border border-border shadow-[var(--shadow-card)]">
-              <img src={heroBurger} alt="Doble hamburguesa Burger Forge" width={1600} height={1600} className="aspect-square w-full object-cover" />
+              <img src={heroBurger} alt="Hamburguesa doble angus Burger Forge con queso cheddar derretido y llamas" width={1600} height={1600} loading="eager" fetchPriority="high" decoding="async" className="aspect-square w-full object-cover" />
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
                 <div>
                   <div className="font-script text-2xl text-accent">Super Delicious</div>
