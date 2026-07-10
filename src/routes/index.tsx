@@ -150,8 +150,8 @@ function Home() {
             <a href="#about" className="transition-colors hover:text-foreground">Historia</a>
             <a href="#info" className="transition-colors hover:text-foreground">Contacto</a>
           </nav>
-          <button className="group relative inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-ember)] transition-transform hover:-translate-y-0.5">
-            <ShoppingBag className="size-4" />
+          <button aria-label={`Carrito con ${cartCount} artículo(s)${cartTotal > 0 ? `, total S/ ${cartTotal.toFixed(2)}` : ""}`} className="group relative inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-ember)] transition-transform hover:-translate-y-0.5">
+            <ShoppingBag className="size-4" aria-hidden="true" />
             <span>{cartCount}</span>
             {cartTotal > 0 && <span className="hidden sm:inline">· S/ {cartTotal.toFixed(2)}</span>}
           </button>
