@@ -158,8 +158,9 @@ function Home() {
         </div>
       </header>
 
+      <main id="main">
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section aria-labelledby="hero-heading" className="relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center md:py-24">
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
