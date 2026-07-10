@@ -166,7 +166,7 @@ function Home() {
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               <Flame className="size-3" /> Forjada al fuego
             </span>
-            <h1 className="mt-6 font-display text-6xl leading-[0.9] sm:text-7xl md:text-8xl">
+            <h1 id="hero-heading" className="mt-6 font-display text-6xl leading-[0.9] sm:text-7xl md:text-8xl">
               Cada mordida <br />
               <span className="text-gradient-ember">arde</span>{" "}
               <span className="font-script text-4xl text-accent sm:text-5xl md:text-6xl">de sabor.</span>
