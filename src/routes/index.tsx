@@ -11,8 +11,75 @@ import bDouble from "@/assets/burger-double.jpg";
 import pizza from "@/assets/pizza.jpg";
 import combo from "@/assets/combo.jpg";
 
+const SITE_URL = "https://taste-spark-platform.lovable.app";
+const PAGE_TITLE = "Burger Forge — Hamburguesas artesanales con delivery en Ventanilla";
+const PAGE_DESC = "Hamburguesas premium a la parrilla de leña, carne angus 180g, pan brioche 24h y salsas caseras. Delivery caliente en 25 min por todo Ventanilla, Callao.";
+
 export const Route = createFileRoute("/")({
   component: Home,
+  head: () => ({
+    meta: [
+      { title: PAGE_TITLE },
+      { name: "description", content: PAGE_DESC },
+      { name: "keywords", content: "hamburguesas Ventanilla, delivery hamburguesas Callao, burger artesanal Perú, angus burger Lima, pizza Ventanilla" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "author", content: "Burger Forge" },
+      { property: "og:title", content: PAGE_TITLE },
+      { property: "og:description", content: PAGE_DESC },
+      { property: "og:type", content: "restaurant.restaurant" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: `${SITE_URL}/og-image.jpg` },
+      { property: "og:image:alt", content: "Hamburguesa Burger Forge doble con queso derretido" },
+      { name: "twitter:title", content: PAGE_TITLE },
+      { name: "twitter:description", content: PAGE_DESC },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.jpg` },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Restaurant",
+          name: "Burger Forge",
+          description: PAGE_DESC,
+          url: SITE_URL,
+          image: `${SITE_URL}/og-image.jpg`,
+          servesCuisine: ["American", "Burgers", "Pizza"],
+          priceRange: "S/ 14 – S/ 30",
+          telephone: "+51 987 654 321",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Mz. LLT9",
+            addressLocality: "Ventanilla",
+            addressRegion: "Callao",
+            addressCountry: "PE",
+          },
+          openingHours: "Mo-Su 12:00-23:00",
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.9",
+            reviewCount: "2400",
+          },
+          hasMenu: {
+            "@type": "Menu",
+            hasMenuSection: [
+              {
+                "@type": "MenuSection",
+                name: "Hamburguesas",
+                hasMenuItem: PRODUCTS.filter((p) => p.category === "Hamburguesas").map((p) => ({
+                  "@type": "MenuItem",
+                  name: p.name,
+                  description: p.desc,
+                  offers: { "@type": "Offer", price: p.price.toFixed(2), priceCurrency: "PEN" },
+                })),
+              },
+            ],
+          },
+        }),
+      },
+    ],
+  }),
 });
 
 type Category = "Todos" | "Hamburguesas" | "Combos" | "Pizza";
