@@ -11,8 +11,75 @@ import bDouble from "@/assets/burger-double.jpg";
 import pizza from "@/assets/pizza.jpg";
 import combo from "@/assets/combo.jpg";
 
+const SITE_URL = "https://taste-spark-platform.lovable.app";
+const PAGE_TITLE = "Burger Forge — Hamburguesas artesanales con delivery en Ventanilla";
+const PAGE_DESC = "Hamburguesas premium a la parrilla de leña, carne angus 180g, pan brioche 24h y salsas caseras. Delivery caliente en 25 min por todo Ventanilla, Callao.";
+
 export const Route = createFileRoute("/")({
   component: Home,
+  head: () => ({
+    meta: [
+      { title: PAGE_TITLE },
+      { name: "description", content: PAGE_DESC },
+      { name: "keywords", content: "hamburguesas Ventanilla, delivery hamburguesas Callao, burger artesanal Perú, angus burger Lima, pizza Ventanilla" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "author", content: "Burger Forge" },
+      { property: "og:title", content: PAGE_TITLE },
+      { property: "og:description", content: PAGE_DESC },
+      { property: "og:type", content: "restaurant.restaurant" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: `${SITE_URL}/og-image.jpg` },
+      { property: "og:image:alt", content: "Hamburguesa Burger Forge doble con queso derretido" },
+      { name: "twitter:title", content: PAGE_TITLE },
+      { name: "twitter:description", content: PAGE_DESC },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.jpg` },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Restaurant",
+          name: "Burger Forge",
+          description: PAGE_DESC,
+          url: SITE_URL,
+          image: `${SITE_URL}/og-image.jpg`,
+          servesCuisine: ["American", "Burgers", "Pizza"],
+          priceRange: "S/ 14 – S/ 30",
+          telephone: "+51 987 654 321",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Mz. LLT9",
+            addressLocality: "Ventanilla",
+            addressRegion: "Callao",
+            addressCountry: "PE",
+          },
+          openingHours: "Mo-Su 12:00-23:00",
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.9",
+            reviewCount: "2400",
+          },
+          hasMenu: {
+            "@type": "Menu",
+            hasMenuSection: [
+              {
+                "@type": "MenuSection",
+                name: "Hamburguesas",
+                hasMenuItem: PRODUCTS.filter((p) => p.category === "Hamburguesas").map((p) => ({
+                  "@type": "MenuItem",
+                  name: p.name,
+                  description: p.desc,
+                  offers: { "@type": "Offer", price: p.price.toFixed(2), priceCurrency: "PEN" },
+                })),
+              },
+            ],
+          },
+        }),
+      },
+    ],
+  }),
 });
 
 type Category = "Todos" | "Hamburguesas" | "Combos" | "Pizza";
@@ -83,22 +150,23 @@ function Home() {
             <a href="#about" className="transition-colors hover:text-foreground">Historia</a>
             <a href="#info" className="transition-colors hover:text-foreground">Contacto</a>
           </nav>
-          <button className="group relative inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-ember)] transition-transform hover:-translate-y-0.5">
-            <ShoppingBag className="size-4" />
+          <button aria-label={`Carrito con ${cartCount} artículo(s)${cartTotal > 0 ? `, total S/ ${cartTotal.toFixed(2)}` : ""}`} className="group relative inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-ember)] transition-transform hover:-translate-y-0.5">
+            <ShoppingBag className="size-4" aria-hidden="true" />
             <span>{cartCount}</span>
             {cartTotal > 0 && <span className="hidden sm:inline">· S/ {cartTotal.toFixed(2)}</span>}
           </button>
         </div>
       </header>
 
+      <main id="main">
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section aria-labelledby="hero-heading" className="relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center md:py-24">
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               <Flame className="size-3" /> Forjada al fuego
             </span>
-            <h1 className="mt-6 font-display text-6xl leading-[0.9] sm:text-7xl md:text-8xl">
+            <h1 id="hero-heading" className="mt-6 font-display text-6xl leading-[0.9] sm:text-7xl md:text-8xl">
               Cada mordida <br />
               <span className="text-gradient-ember">arde</span>{" "}
               <span className="font-script text-4xl text-accent sm:text-5xl md:text-6xl">de sabor.</span>
@@ -132,7 +200,7 @@ function Home() {
               style={{ background: "var(--gradient-ember)" }}
             />
             <div className="relative overflow-hidden rounded-[2rem] border border-border shadow-[var(--shadow-card)]">
-              <img src={heroBurger} alt="Doble hamburguesa Burger Forge" width={1600} height={1600} className="aspect-square w-full object-cover" />
+              <img src={heroBurger} alt="Hamburguesa doble angus Burger Forge con queso cheddar derretido y llamas" width={1600} height={1600} loading="eager" fetchPriority="high" decoding="async" className="aspect-square w-full object-cover" />
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
                 <div>
                   <div className="font-script text-2xl text-accent">Super Delicious</div>
@@ -220,6 +288,7 @@ function Home() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="border-t border-border/50 bg-background/60">
