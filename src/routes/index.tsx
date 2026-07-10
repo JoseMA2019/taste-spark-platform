@@ -288,6 +288,7 @@ function Home() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="border-t border-border/50 bg-background/60">
