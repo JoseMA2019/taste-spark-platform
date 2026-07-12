@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as CevicheriaRouteImport } from './routes/cevicheria'
+import { Route as CafeRouteImport } from './routes/cafe'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -23,6 +24,11 @@ const CevicheriaRoute = CevicheriaRouteImport.update({
   path: '/cevicheria',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CafeRoute = CafeRouteImport.update({
+  id: '/cafe',
+  path: '/cafe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cafe': typeof CafeRoute
   '/cevicheria': typeof CevicheriaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cafe': typeof CafeRoute
   '/cevicheria': typeof CevicheriaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cafe': typeof CafeRoute
   '/cevicheria': typeof CevicheriaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cevicheria' | '/sitemap.xml'
+  fullPaths: '/' | '/cafe' | '/cevicheria' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cevicheria' | '/sitemap.xml'
-  id: '__root__' | '/' | '/cevicheria' | '/sitemap.xml'
+  to: '/' | '/cafe' | '/cevicheria' | '/sitemap.xml'
+  id: '__root__' | '/' | '/cafe' | '/cevicheria' | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CafeRoute: typeof CafeRoute
   CevicheriaRoute: typeof CevicheriaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CevicheriaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cafe': {
+      id: '/cafe'
+      path: '/cafe'
+      fullPath: '/cafe'
+      preLoaderRoute: typeof CafeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,19 +104,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CafeRoute: CafeRoute,
   CevicheriaRoute: CevicheriaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
