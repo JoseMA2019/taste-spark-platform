@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SushiRouteImport } from './routes/sushi'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as CevicheriaRouteImport } from './routes/cevicheria'
 import { Route as CafeRouteImport } from './routes/cafe'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SushiRoute = SushiRouteImport.update({
+  id: '/sushi',
+  path: '/sushi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/cafe': typeof CafeRoute
   '/cevicheria': typeof CevicheriaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sushi': typeof SushiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cafe': typeof CafeRoute
   '/cevicheria': typeof CevicheriaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sushi': typeof SushiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/cafe': typeof CafeRoute
   '/cevicheria': typeof CevicheriaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sushi': typeof SushiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cafe' | '/cevicheria' | '/sitemap.xml'
+  fullPaths: '/' | '/cafe' | '/cevicheria' | '/sitemap.xml' | '/sushi'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cafe' | '/cevicheria' | '/sitemap.xml'
-  id: '__root__' | '/' | '/cafe' | '/cevicheria' | '/sitemap.xml'
+  to: '/' | '/cafe' | '/cevicheria' | '/sitemap.xml' | '/sushi'
+  id: '__root__' | '/' | '/cafe' | '/cevicheria' | '/sitemap.xml' | '/sushi'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +76,18 @@ export interface RootRouteChildren {
   CafeRoute: typeof CafeRoute
   CevicheriaRoute: typeof CevicheriaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SushiRoute: typeof SushiRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sushi': {
+      id: '/sushi'
+      path: '/sushi'
+      fullPath: '/sushi'
+      preLoaderRoute: typeof SushiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   CafeRoute: CafeRoute,
   CevicheriaRoute: CevicheriaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SushiRoute: SushiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
