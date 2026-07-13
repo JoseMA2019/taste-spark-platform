@@ -413,34 +413,93 @@ function SushiPage() {
 
       {/* Reserva */}
       <section id="reserva" className="border-t border-white/5" style={{ background: "var(--k-panel)" }}>
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-24 md:grid-cols-3">
-          <div>
-            <span className="k-jp text-2xl">住所</span>
-            <h3 className="mt-1 text-3xl">Ubicación</h3>
-            <p className="mt-3 text-white/60">Av. La Mar 1450<br />Miraflores, Lima</p>
+        <div className="mx-auto max-w-7xl px-4 py-24">
+          <div className="grid gap-10 md:grid-cols-3">
+            <div>
+              <span className="k-jp text-2xl">住所</span>
+              <h3 className="mt-1 text-3xl">Ubicación</h3>
+              <p className="mt-3 text-white/60">Av. La Mar 1450<br />Miraflores, Lima</p>
+            </div>
+            <div>
+              <span className="k-jp text-2xl">営業時間</span>
+              <h3 className="mt-1 text-3xl">Horarios</h3>
+              <p className="mt-3 text-white/60">
+                Mar–Dom · 12:30–23:00<br />
+                Vie–Sáb · hasta 00:30<br />
+                Lunes cerrado
+              </p>
+            </div>
+            <div>
+              <span className="k-jp text-2xl">予約</span>
+              <h3 className="mt-1 text-3xl">Reservas</h3>
+              <p className="mt-3 text-white/60">
+                +51 987 654 321<br />
+                hola@kuroisushi.pe
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a
+                  href="tel:+51987654321"
+                  className="k-btn-red inline-flex items-center gap-2 rounded-full px-5 py-3 text-xs font-bold uppercase tracking-widest"
+                  aria-label="Llamar a Kuroi Sushi"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+                  Llamar
+                </a>
+                <a
+                  href="https://wa.me/51987654321?text=Hola%20Kuroi%2C%20quiero%20reservar%20una%20mesa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-xs font-bold uppercase tracking-widest text-white"
+                  style={{ background: "#25D366" }}
+                  aria-label="Reservar por WhatsApp"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.1-.3.2-.6 0-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.4-.8-2c-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 3 4.7 4.2 2.8 1.1 2.8.7 3.3.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 2.9 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C3.9 15 3.5 13.5 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.5-8.5 8.5z"/></svg>
+                  WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
-          <div>
-            <span className="k-jp text-2xl">営業時間</span>
-            <h3 className="mt-1 text-3xl">Horarios</h3>
-            <p className="mt-3 text-white/60">
-              Mar–Dom · 12:30–23:00<br />
-              Vie–Sáb · hasta 00:30<br />
-              Lunes cerrado
-            </p>
-          </div>
-          <div>
-            <span className="k-jp text-2xl">予約</span>
-            <h3 className="mt-1 text-3xl">Reservas</h3>
-            <p className="mt-3 text-white/60">
-              +51 987 654 321<br />
-              hola@kuroisushi.pe
-            </p>
-            <a href="tel:+51987654321" className="k-btn-red mt-5 inline-block rounded-full px-6 py-3 text-xs font-bold uppercase tracking-widest">
-              Reservar ahora
-            </a>
+
+          <div className="mt-14">
+            <span className="k-jp text-2xl">地図</span>
+            <h3 className="mt-1 text-3xl">Cómo llegar</h3>
+            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
+              <iframe
+                title="Ubicación de Kuroi Sushi en Miraflores"
+                src="https://www.google.com/maps?q=Av.+La+Mar+1450,+Miraflores,+Lima,+Peru&output=embed"
+                width="100%"
+                height="420"
+                style={{ border: 0, filter: "grayscale(0.4) contrast(1.1)" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+            <div className="mt-4">
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Av.+La+Mar+1450,+Miraflores,+Lima,+Peru"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2 text-xs font-bold uppercase tracking-widest text-white/80 hover:bg-white/5"
+              >
+                Cómo llegar en Google Maps →
+              </a>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Floating WhatsApp */}
+      <a
+        href="https://wa.me/51987654321?text=Hola%20Kuroi%2C%20quiero%20reservar%20una%20mesa"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-2xl transition hover:scale-110"
+        style={{ background: "#25D366" }}
+      >
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.1-.3.2-.6 0-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.4-.8-2c-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 3 4.7 4.2 2.8 1.1 2.8.7 3.3.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 2.9 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C3.9 15 3.5 13.5 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.5-8.5 8.5z"/></svg>
+      </a>
 
       <footer className="border-t border-white/5 py-10 text-center text-xs text-white/40">
         © {new Date().getFullYear()} Kuroi Sushi · Miraflores, Lima
